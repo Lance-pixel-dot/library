@@ -7,10 +7,48 @@
     <title>Library</title>
 </head>
 <body>
+
+    <div>
+        <button class="form-button">New Book</button>
+        <dialog>
+            <button class="close-dialog">X</button>
+            <form action="#" method="post" class="fill-up-form">
+                <div>
+                    <label for="book-title">Title</label>
+                    <input type="text" id="book-title" name="book-title" required>
+                </div>
+                <div>
+                    <label for="book-author">Author</label>
+                    <input type="text" id="book-author" name="book-author" required>
+                </div>
+                <div>
+                    <label for="book-genre">Genre</label>
+                    <input type="text" id="book-genre" name="book-genre" required>
+                </div>
+                <div>
+                    <label for="book-pages">Pages</label>
+                    <input type="text" id="book-pages" name="book-pages" required>
+                </div>
+                <div>
+                    <label for="book-release">Release Date</label>
+                    <input type="text" id="book-release" name="book-release" required>
+                </div>
+                <div>
+                    <p>Have you read it yet?</p>
+                    <input type="radio" id="book-read-yes" name="book-read" value="Yes" required>
+                    <label for="book-read-yes">Yes</label>
+                    <input type="radio" id="book-read-no" name="book-read"  value="No" required>
+                    <label for="book-read-no">No</label>
+                </div>
+                <button type="submit" class="submit-form">Submit</button>
+                <button type="reset">Clear</button>
+            </form>
+        </dialog>
+    </div>
     
     <div class="card-container">
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
