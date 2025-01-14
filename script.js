@@ -10,6 +10,7 @@ const getDate = document.querySelector('#book-release');
 const getRadio = document.getElementsByName('book-read');
 const dialog = document.querySelector('dialog');
 const closeDialog = document.querySelector('.close-dialog');
+const deleteBook = document.querySelector('.delete-book');
 
 const myLibrary = [];
 
@@ -34,14 +35,40 @@ function addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages, bookDate,
 
 }
 
+let divCounter = 0;
+
 function displayBook(){
     let createDiv = document.createElement('div');
-    createDiv.setAttribute('class', 'cards');
+    let createButton = document.createElement('button');
+
+    createButton.textContent = 'Remove Book';
+    createButton.setAttribute('class', 'delete-book');
+
     bookDisplay.appendChild(createDiv);
 
     for(let i = 0; i < myLibrary.length; i++){
         createDiv.textContent = myLibrary[i];
     }
+
+    createDiv.setAttribute('data-div-num', divCounter++);
+
+    createDiv.appendChild(createButton).addEventListener('click', () => {
+
+        let indexPos = createDiv.dataset.divNum;
+        divCounter = Number(indexPos)+1;
+        
+        console.log(indexPos);
+        let child = bookDisplay.getElementsByTagName('div')[indexPos];
+
+        console.log(child);
+        console.log(myLibrary[indexPos]);
+
+        bookDisplay.removeChild(child);
+
+        myLibrary.splice(indexPos, 1);
+
+        console.log(myLibrary);
+    });
 }
 
 selForm.addEventListener('submit', (e) => {

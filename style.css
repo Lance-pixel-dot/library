@@ -2,8 +2,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
-.cards{
+div[data-div-num]{
     border: 3px solid black;
     padding: 10px;
-    height: 10rem;
+    height: 10rem
 }
