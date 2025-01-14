@@ -23,14 +23,14 @@ function book(title, author, genre, pages, date, read){
     this.read = read;
 }
 
-book.prototype.info = function(){
-    return `Title:${this.title} Author:${this.author} Genre:${this.genre} Pages:${this.pages} Release Date:${this.date} Have you read it yet:${this.read}`
-}
-
 function addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages, bookDate, bookRead){
 
     const newBook = new book(bookTitle, bookAuthor, bookGenre, bookPages, bookDate, bookRead);
-    myLibrary.push(newBook.info());
+
+    console.log(newBook);
+    myLibrary.push(newBook);
+
+    console.log(myLibrary);
     displayBook();
 
 }
@@ -40,14 +40,38 @@ let divCounter = 0;
 function displayBook(){
     let createDiv = document.createElement('div');
     let createButton = document.createElement('button');
+    let createTitleP = document.createElement('p');
+    let createAuthorP = document.createElement('p');
+    let createGenreP = document.createElement('p');
+    let createPagesP = document.createElement('p');
+    let createDateP = document.createElement('p');
+    let createReadP = document.createElement('p');
 
     createButton.textContent = 'Remove Book';
     createButton.setAttribute('class', 'delete-book');
 
     bookDisplay.appendChild(createDiv);
+    createDiv.appendChild(createTitleP);
+    createDiv.appendChild(createAuthorP);
+    createDiv.appendChild(createGenreP);
+    createDiv.appendChild(createPagesP);
+    createDiv.appendChild(createDateP);
+    createDiv.appendChild(createReadP);
+
+    let getBookTitle = myLibrary.map(e => e.title);
+    let getBookAuthor = myLibrary.map(e => e.author);
+    let getBookGenre = myLibrary.map(e => e.genre);
+    let getBookPages = myLibrary.map(e => e.pages);
+    let getBookRelease = myLibrary.map(e => e.date);
+    let getBookRead = myLibrary.map(e => e.read);
 
     for(let i = 0; i < myLibrary.length; i++){
-        createDiv.textContent = myLibrary[i];
+        createTitleP.textContent = `Title: ${getBookTitle[i]}`
+        createAuthorP.textContent = `Author: ${getBookAuthor[i]}`
+        createGenreP.textContent = `Genre: ${getBookGenre[i]}`
+        createPagesP.textContent = `Pages: ${getBookPages[i]}`
+        createDateP.textContent = `Date Released: ${getBookRelease[i]}`
+        createReadP.textContent = `Have you read it yet: ${getBookRead[i]}`
     }
 
     createDiv.setAttribute('data-div-num', divCounter++);
@@ -56,7 +80,7 @@ function displayBook(){
 
         let indexPos = createDiv.dataset.divNum;
         divCounter = Number(indexPos)+1;
-        
+
         console.log(indexPos);
         let child = bookDisplay.getElementsByTagName('div')[indexPos];
 
