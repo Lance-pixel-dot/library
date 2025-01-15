@@ -35,8 +35,6 @@ function addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages, bookDate,
 
 }
 
-let divCounter = 0;
-
 function displayBook(){
     let createDiv = document.createElement('div');
     let createButton = document.createElement('button');
@@ -49,6 +47,7 @@ function displayBook(){
 
     createButton.textContent = 'Remove Book';
     createButton.setAttribute('class', 'delete-book');
+    createDiv.setAttribute('data-index-num', myLibrary.length - 1);
 
     bookDisplay.appendChild(createDiv);
     createDiv.appendChild(createTitleP);
@@ -74,24 +73,18 @@ function displayBook(){
         createReadP.textContent = `Have you read it yet: ${getBookRead[i]}`
     }
 
-    createDiv.setAttribute('data-div-num', divCounter++);
-
     createDiv.appendChild(createButton).addEventListener('click', () => {
 
-        let indexPos = createDiv.dataset.divNum;
-        divCounter = Number(indexPos)+1;
+        let parent = createDiv.parentNode;
 
-        console.log(indexPos);
-        let child = bookDisplay.getElementsByTagName('div')[indexPos];
+        parent.removeChild(createDiv);
 
-        console.log(child);
-        console.log(myLibrary[indexPos]);
+        let indexPos = createDiv.getAttribute('data-index-num');
 
-        bookDisplay.removeChild(child);
-
-        myLibrary.splice(indexPos, 1);
+        delete myLibrary[indexPos]; //this is temporary since this website cannot save any of the information
 
         console.log(myLibrary);
+
     });
 }
 
