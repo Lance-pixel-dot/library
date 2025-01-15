@@ -14,7 +14,7 @@ const deleteBook = document.querySelector('.delete-book');
 
 const myLibrary = [];
 
-function book(title, author, genre, pages, date, read){
+function Book(title, author, genre, pages, date, read){
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -25,17 +25,12 @@ function book(title, author, genre, pages, date, read){
 
 function addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages, bookDate, bookRead){
 
-    const newBook = new book(bookTitle, bookAuthor, bookGenre, bookPages, bookDate, bookRead);
+    const newBook = new Book(bookTitle, bookAuthor, bookGenre, bookPages, bookDate, bookRead);
 
-    console.log(newBook);
     myLibrary.push(newBook);
 
     console.log(myLibrary);
-    displayBook();
 
-}
-
-function displayBook(){
     let createDiv = document.createElement('div');
     let createButton = document.createElement('button');
     let createTitleP = document.createElement('p');
@@ -44,8 +39,10 @@ function displayBook(){
     let createPagesP = document.createElement('p');
     let createDateP = document.createElement('p');
     let createReadP = document.createElement('p');
+    let createChangeRead = document.createElement('button');
 
     createButton.textContent = 'Remove Book';
+    createChangeRead.textContent = 'Toggle Read';
     createButton.setAttribute('class', 'delete-book');
     createDiv.setAttribute('data-index-num', myLibrary.length - 1);
 
@@ -65,12 +62,12 @@ function displayBook(){
     let getBookRead = myLibrary.map(e => e.read);
 
     for(let i = 0; i < myLibrary.length; i++){
-        createTitleP.textContent = `Title: ${getBookTitle[i]}`
-        createAuthorP.textContent = `Author: ${getBookAuthor[i]}`
-        createGenreP.textContent = `Genre: ${getBookGenre[i]}`
-        createPagesP.textContent = `Pages: ${getBookPages[i]}`
-        createDateP.textContent = `Date Released: ${getBookRelease[i]}`
-        createReadP.textContent = `Have you read it yet: ${getBookRead[i]}`
+        createTitleP.textContent = `Title: ${getBookTitle[i]}`;
+        createAuthorP.textContent = `Author: ${getBookAuthor[i]}`;
+        createGenreP.textContent = `Genre: ${getBookGenre[i]}`;
+        createPagesP.textContent = `Pages: ${getBookPages[i]}`;
+        createDateP.textContent = `Date Released: ${getBookRelease[i]}`;
+        createReadP.textContent = `Have you read it yet: ${getBookRead[i]}`;
     }
 
     createDiv.appendChild(createButton).addEventListener('click', () => {
@@ -81,11 +78,32 @@ function displayBook(){
 
         let indexPos = createDiv.getAttribute('data-index-num');
 
-        delete myLibrary[indexPos]; //this is temporary since this website cannot save any of the information
+        delete myLibrary[indexPos]; //this is temporary since this website cannot save any of the information yet.
+
+    });
+
+    createDiv.appendChild(createChangeRead).addEventListener('click', () => {
+
+        newBook.toggleRead();
+
+        if(createReadP.textContent == `Have you read it yet: Yes`){
+            createReadP.textContent = `Have you read it yet: No`;
+        }else if(createReadP.textContent == `Have you read it yet: No`){
+            createReadP.textContent = `Have you read it yet: Yes`;
+        }
 
         console.log(myLibrary);
 
-    });
+    }); 
+
+}  
+
+Book.prototype.toggleRead = function(){
+    if(this.read == 'Yes'){
+        this.read = 'No';
+    }else if(this.read == 'No'){
+        this.read = 'Yes';
+    }
 }
 
 selForm.addEventListener('submit', (e) => {
