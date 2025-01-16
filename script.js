@@ -9,7 +9,9 @@ const getPages = document.querySelector('#book-pages');
 const getDate = document.querySelector('#book-release');
 const getRadio = document.getElementsByName('book-read');
 const dialog = document.querySelector('dialog');
+const dialogTwo = document.querySelector('.dialog-two');
 const closeDialog = document.querySelector('.close-dialog');
+const closeDialogTwo = document.querySelector('#close-two');
 const deleteBook = document.querySelector('.delete-book');
 
 const myLibrary = [];
@@ -28,8 +30,6 @@ function addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages, bookDate,
     const newBook = new Book(bookTitle, bookAuthor, bookGenre, bookPages, bookDate, bookRead);
 
     myLibrary.push(newBook);
-
-    console.log(myLibrary);
 
     let createDiv = document.createElement('div');
     let createButton = document.createElement('button');
@@ -62,11 +62,11 @@ function addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages, bookDate,
     let getBookRead = myLibrary.map(e => e.read);
 
     for(let i = 0; i < myLibrary.length; i++){
-        createTitleP.textContent = `Title: ${getBookTitle[i]}`;
-        createAuthorP.textContent = `Author: ${getBookAuthor[i]}`;
-        createGenreP.textContent = `Genre: ${getBookGenre[i]}`;
-        createPagesP.textContent = `Pages: ${getBookPages[i]}`;
-        createDateP.textContent = `Date Released: ${getBookRelease[i]}`;
+        createTitleP.textContent = `Title: \xa0 ${getBookTitle[i]}`;
+        createAuthorP.textContent = `Author: \xa0 ${getBookAuthor[i]}`;
+        createGenreP.textContent = `Genre: \xa0 ${getBookGenre[i]}`;
+        createPagesP.textContent = `Pages:\xa0 ${getBookPages[i]}`;
+        createDateP.textContent = `Date Released:\xa0 ${getBookRelease[i]}`;
         createReadP.textContent = `Have you read it yet: ${getBookRead[i]}`;
     }
 
@@ -84,7 +84,7 @@ function addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages, bookDate,
 
     createDiv.appendChild(createChangeRead).addEventListener('click', () => {
 
-        newBook.toggleRead();
+        newBook.toggleRead;
 
         if(createReadP.textContent == `Have you read it yet: Yes`){
             createReadP.textContent = `Have you read it yet: No`;
@@ -92,9 +92,7 @@ function addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages, bookDate,
             createReadP.textContent = `Have you read it yet: Yes`;
         }
 
-        console.log(myLibrary);
-
-    }); 
+    });  
 
 }  
 
@@ -117,6 +115,11 @@ displayForm.addEventListener('click', () => {
 closeDialog.addEventListener('click', () => {
     dialog.close();
 })
+
+closeDialogTwo.addEventListener('click', () => {
+    dialogTwo.close();
+})
+
 
 formSub.addEventListener('click', () => {
 
