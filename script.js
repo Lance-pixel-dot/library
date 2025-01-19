@@ -84,7 +84,7 @@ function addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages, bookDate,
 
     createDiv.appendChild(createChangeRead).addEventListener('click', () => {
 
-        newBook.toggleRead;
+        newBook.toggleRead();
 
         if(createReadP.textContent == `Have you read it yet: Yes`){
             createReadP.textContent = `Have you read it yet: No`;
