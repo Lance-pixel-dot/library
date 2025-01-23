@@ -16,13 +16,25 @@ const deleteBook = document.querySelector('.delete-book');
 
 const myLibrary = [];
 
-function Book(title, author, genre, pages, date, read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.genre = genre;
-    this.date = date;
-    this.read = read;
+class Book {
+
+    constructor(title, author, genre, pages, date, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.genre = genre;
+        this.date = date;
+        this.read = read;
+    }
+
+   toggleRead(){
+        if(this.read == 'Yes'){
+            this.read = 'No';
+        }else if(this.read == 'No'){
+            this.read = 'Yes';
+        }
+    }
+
 }
 
 function addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages, bookDate, bookRead){
@@ -95,14 +107,6 @@ function addBookToLibrary(bookTitle, bookAuthor, bookGenre, bookPages, bookDate,
     });  
 
 }  
-
-Book.prototype.toggleRead = function(){
-    if(this.read == 'Yes'){
-        this.read = 'No';
-    }else if(this.read == 'No'){
-        this.read = 'Yes';
-    }
-}
 
 selForm.addEventListener('submit', (e) => {
     e.preventDefault();  
